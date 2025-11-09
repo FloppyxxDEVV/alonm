@@ -1,0 +1,28 @@
+window.vuukleAdConfiguration = {
+  // insertQuizAndAd: {
+  //   quizOptions: {
+  //     insert: "after",
+  //     selector: [".entry-main-content > p:nth-of-type(4)", ".entry-main-content > .pasted-from-word-wrapper > *:nth-of-type(4)"]
+  //   },
+  // },
+  adUnit: "prebid3",
+  targets: {
+    default: {},
+    secondDefault: {},
+    "vuukle-ad-2": {},
+    "vuukle-ad-3": {
+      insert: "after",
+      selector: 'div[id*="vuukle-quiz"]',
+      postInsertionOperation: () => {
+        const allQuizzes = document.querySelectorAll('div[id*="vuukle-quiz"]');
+        allQuizzes.forEach((quiz) => {
+          const quizParent = quiz.parentElement;
+          if (quizParent) {
+            quizParent.style.display = 'flex';
+            quizParent.style.flexWrap = 'wrap';
+          }
+        });
+      }
+    },
+  },
+};
